@@ -22,17 +22,11 @@ def scrap_data_and_add_to_database():
     wait = WebDriverWait(driver, 5)
 
     try:
-        # Wait until at least two elements with class 'g-mt-4' are present
-        elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "g-mt-4")))
 
         # Wait until we get get elements of g-mt-2 class
         elements_g_mt_2 = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "g-mt-2")))
 
-        # Accessing the second element (index 1) if it exists
-        if len(elements) > 1:
-            gmt_class_index_2 = elements[1]
-            links_all_courses = gmt_class_index_2.find_elements(By.TAG_NAME, "a")
-        
+        links_all_courses=[]
         if len(elements_g_mt_2) >= 1:
             for element in elements_g_mt_2:
                 links_all_courses.extend(element.find_elements(By.TAG_NAME, "a"))
@@ -75,8 +69,8 @@ def scrap_data_and_add_to_database():
 
             # Create tuple using the data extracted above
             course_info_tuple = (
-                course_href or "n/a", 
                 course_heading or "n/a", 
+                course_href or "n/a", 
                 interested_geeks_count or "n/a", 
                 course_rating or "n/a", 
                 course_price or "n/a"
@@ -94,19 +88,18 @@ def scrap_data_and_add_to_database():
 def add_data_to_database(all_courses_data):
     try:
         # Connect to your PostgreSQL database
-        # Add your credentials
-        conn = psycopg2.connect(database = "", 
-                user = "", 
-                host= "",
-                password = "",
-                port = )
+        conn = psycopg2.connect(database = "nestorbird", 
+                user = "zain", 
+                host= 'localhost',
+                password = "pass",
+                port = 5432)
 
         cursor = conn.cursor()
 
         create_table_query = """
             CREATE TABLE IF NOT EXISTS courses (
                 id SERIAL PRIMARY KEY,
-                course_heading TEXT,
+                course_heading TEXT UNIQUE,
                 course_href TEXT,
                 interested_geeks_count TEXT,
                 course_rating TEXT,
@@ -117,6 +110,7 @@ def add_data_to_database(all_courses_data):
         insert_query = sql.SQL("""
         INSERT INTO courses ( course_heading, course_href, interested_geeks_count, course_rating, course_price)
         VALUES (%s, %s, %s, %s, %s)
+        ON CONFLICT (course_heading) DO NOTHING;
         """)
 
         cursor.execute(create_table_query)

@@ -36,6 +36,10 @@ Ensure you have a compatible web browser installed on your system. This project 
 ## Setup
 Import the database using db.sql file.
 
+Use command:
+
+psql -h host -d database -U username path/db.sql
+
 cd to the directory where main.py and fetch.py exists.
 
 ### main.py

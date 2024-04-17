@@ -2,12 +2,13 @@ import psycopg2
 import csv
 
 # Connect to your PostgreSQL database
+# Add your credentials
 conn = psycopg2.connect(
-    database="nestorbird",
-    user="zain",
-    host='localhost',
-    password="pass",
-    port=5432
+    database="",
+    user="",
+    host="",
+    password="",
+    port=
 )
 
 # A cursor serves as a handle for the execution of SQL queries in the database.

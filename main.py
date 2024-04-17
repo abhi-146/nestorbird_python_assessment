@@ -88,11 +88,11 @@ def scrap_data_and_add_to_database():
 def add_data_to_database(all_courses_data):
     try:
         # Connect to your PostgreSQL database
-        conn = psycopg2.connect(database = "nestorbird", 
-                user = "zain", 
-                host= 'localhost',
-                password = "pass",
-                port = 5432)
+        conn = psycopg2.connect(database = "", 
+                user = "", 
+                host= "",
+                password = "",
+                port = )
 
         cursor = conn.cursor()
 

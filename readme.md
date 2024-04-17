@@ -36,24 +36,38 @@ Ensure you have a compatible web browser installed on your system. This project 
 ## Setup
 Import the database using db.sql file.
 
-Use command:
+Use command: 
 
 psql -h host -d database -U username path/db.sql
 
+Step 1 : Clone the repo:
+
+Use command:
+git clone https://github.com/abhi-146/nestorbird_python_assessment.git
+
+Step 2: Create the database
+
+Use command:
+psql 
+
+The above command will enter into postreSQL shell. Then use command:
+CREATE DATABASE databse_name;
+
 cd to the directory where main.py and fetch.py exists.
 
-### main.py
+Step 3: main.py
 This file will fetch the data from the database and generate a csv file using the fetched data.
 
 Use command to run:
 
 python3 main.py 
 
-### fetch.py
+Step 4: fetch.py
 This file will fetch the courses data from the Geeksforgeeks website and store in postgreSQL databse.
 
 Use command to run:
 
 python3 fetch.py 
+
 
 

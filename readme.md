@@ -34,7 +34,9 @@ pip install psycopg2
 Ensure you have a compatible web browser installed on your system. This project primarily supports Google Chrome, but you can adjust the WebDriver and configurations to work with other browsers as well.
 
 ## Setup
-Import the database using db.sql file
+Import the database using db.sql file.
+
+cd to the directory where main.py and fetch.py exists.
 
 ### main.py
 This file will fetch the data from the database and generate a csv file using the fetched data.
@@ -48,6 +50,6 @@ This file will fetch the courses data from the Geeksforgeeks website and store i
 
 Use command to run:
 
-python3 main.py 
+python3 fetch.py 
 
 
